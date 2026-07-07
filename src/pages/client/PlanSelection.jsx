@@ -97,11 +97,12 @@ export default function PlanSelection() {
             {/* Override client-visible plan prices to match subscription pricing */}
             {plans.map((plan, index) => {
               const PRICE_MAP = {
-                Medium: '500',
-                Premium: '2 000',
-                Pro: '3 000',
+                medium: '500',
+                premium: '2 000',
+                pro: '3 000',
               };
-              const displayPlan = { ...plan, price: PRICE_MAP[plan.name] ?? plan.price };
+              const normalizedName = String(plan.name || '').trim().toLowerCase();
+              const displayPlan = { ...plan, price: PRICE_MAP[normalizedName] ?? plan.price };
               const isPopular = index === 1;
               return (
                 <motion.div
