@@ -94,7 +94,14 @@ export default function PlanSelection() {
 
           {/* Plan cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
+            {/* Override client-visible plan prices to match subscription pricing */}
             {plans.map((plan, index) => {
+              const PRICE_MAP = {
+                Medium: '500',
+                Premium: '2 000',
+                Pro: '3 000',
+              };
+              const displayPlan = { ...plan, price: PRICE_MAP[plan.name] ?? plan.price };
               const isPopular = index === 1;
               return (
                 <motion.div
@@ -128,8 +135,8 @@ export default function PlanSelection() {
                       </div>
                       <div>
                         <h2 className="text-xl font-extrabold text-gray-900" style={{ fontFamily: "'Syne', sans-serif" }}>
-                          {plan.name}
-                        </h2>
+                          {displayPlan.name || plan.name}
+                          </h2>
                         <p className="text-xs text-gray-400 font-medium">One-time payment</p>
                       </div>
                     </div>
@@ -140,7 +147,7 @@ export default function PlanSelection() {
                         className="text-4xl font-extrabold text-gray-900"
                         style={{ fontFamily: "'Syne', sans-serif" }}
                       >
-                        {plan.price}
+                        {displayPlan.price}
                       </span>
                       <span className="text-gray-400 font-semibold text-sm">DZD</span>
                     </div>
@@ -163,14 +170,14 @@ export default function PlanSelection() {
 
                     {/* CTA */}
                     <button
-                      onClick={() => navigate('/client/payment', { state: { plan } })}
+                      onClick={() => navigate('/client/payment', { state: { plan: displayPlan } })}
                       className={`w-full py-3.5 px-4 rounded-2xl font-bold text-white text-sm
                         bg-gradient-to-r ${BTN_COLORS[index]}
                         shadow-[0_4px_16px_rgba(124,58,237,0.25)]
                         hover:shadow-[0_8px_28px_rgba(124,58,237,0.35)]
                         hover:-translate-y-0.5 transition-all duration-300`}
                     >
-                      Select {plan.name} →
+                      Select {displayPlan.name || plan.name} →
                     </button>
                   </div>
                 </motion.div>

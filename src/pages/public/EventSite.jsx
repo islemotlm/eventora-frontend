@@ -120,21 +120,21 @@ function CountdownTimer({ date, variant = 'dark' }) {
 // ── Exhibitor Stand Section (shared across all themes) ────────────────────────
 const STAND_OPTIONS = [
   {
-    type: 'minimum',
-    price: '50,000',
-    label: 'Minimum',
+    type: 'medium',
+    price: '2 000',
+    label: 'Medium',
     features: ['6 m² stand area', '2 exhibitor passes', 'Company name display', 'Basic setup included'],
   },
   {
     type: 'standard',
-    price: '100,000',
+    price: '3 500',
     label: 'Standard',
     features: ['12 m² stand area', '5 exhibitor passes', 'Branded backdrop', 'Electrical + WiFi', 'Lunch included'],
     popular: true,
   },
   {
     type: 'premium',
-    price: '150,000',
+    price: '4 500',
     label: 'Premium',
     features: ['24 m² corner stand', '10 exhibitor passes', 'Full branding package', 'Prime location', 'Promotional materials', 'All meals + VIP access'],
   },
